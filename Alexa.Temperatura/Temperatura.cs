@@ -74,7 +74,7 @@ namespace Alexa.Temperatura
 
         private async Task<int> GetTemperature()
         {
-            var response = await _client.GetAsync("http://apiadvisor.climatempo.com.br/api/v1/weather/locale/3877/current?token=8ef010da20c550a8c01ec101f48c85cf");
+            var response = await _client.GetAsync("http://apiadvisor.climatempo.com.br/api/v1/weather/locale/3877/current?token={suachave}");
             var temperature = await response.Content.ReadAsStringAsync();
             var content = System.Text.Json.JsonSerializer.Deserialize<Clima>(temperature);
 
