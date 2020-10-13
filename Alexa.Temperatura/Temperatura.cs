@@ -45,7 +45,7 @@ namespace Alexa.Temperatura
             SkillResponse response = null;
             if (requestType == typeof(LaunchRequest))
             {
-                response = ResponseBuilder.Tell("Welcome to dot net!");
+                response = ResponseBuilder.Tell("Welcome a Dotnet Marraia temperature. Create By Fernando Mendes");
                 response.Response.ShouldEndSession = false;
             }
             else if (requestType == typeof(IntentRequest))
@@ -55,7 +55,7 @@ namespace Alexa.Temperatura
                 {
                     var speech = new SsmlOutputSpeech();
                     var result = await GetTemperature();
-                    speech.Ssml = $"<speak>The temperature is: {result}</speak>";
+                    speech.Ssml = $"<speak>The temperature in jundiaí at this moment is { result} degrees</speak>";
 
                     response = ResponseBuilder.TellWithCard(speech, "The answer is", $"The answer is: {result}");
                     response.Response.ShouldEndSession = false;
@@ -63,7 +63,10 @@ namespace Alexa.Temperatura
             }
             else if (requestType == typeof(SessionEndedRequest))
             {
-                response = ResponseBuilder.Tell("See you next time!");
+                var speech = new SsmlOutputSpeech();
+                speech.Ssml = $"<speak>Bye Bye Marraia!!</speak>";
+
+                response = ResponseBuilder.TellWithCard(speech, "Bye Bye Marraia","Marraia");
                 response.Response.ShouldEndSession = true;
             }
             return new OkObjectResult(response);
